@@ -5,3 +5,5 @@ S
 #contracts/credential-registry_.clar,1/a/1ab56d03737bddffc686e316e375325a47231c38
 R
 "tests/credential-registry_.test.ts,e/a/eadb943f120abe69c74f7ef69f8b3a34ca41c409
+U
+%contracts/institution-management.clar,b/4/b49287ef50b4e04d83e6f3b4c4f4a2362c8c7b10
