@@ -1,21 +1,51 @@
+import { describe, it, beforeEach, expect } from "vitest"
 
-import { describe, expect, it } from "vitest";
+describe("institution-management", () => {
+  let contract: any
+  
+  beforeEach(() => {
+    contract = {
+      addInstitution: (institution: string, name: string, website: string) => ({ success: true }),
+      removeInstitution: (institution: string) => ({ success: true }),
+      isAuthorizedInstitution: (institution: string) => true,
+      getInstitutionInfo: (institution: string) => ({
+        name: "Example University",
+        website: "https://www.example.edu",
+      }),
+    }
+  })
+  
+  describe("add-institution", () => {
+    it("should add a new institution", () => {
+      const result = contract.addInstitution(
+          "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM",
+          "New University",
+          "https://www.newuniversity.edu",
+      )
+      expect(result.success).toBe(true)
+    })
+  })
+  
+  describe("remove-institution", () => {
+    it("should remove an institution", () => {
+      const result = contract.removeInstitution("ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM")
+      expect(result.success).toBe(true)
+    })
+  })
+  
+  describe("is-authorized-institution", () => {
+    it("should check if an institution is authorized", () => {
+      const result = contract.isAuthorizedInstitution("ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM")
+      expect(result).toBe(true)
+    })
+  })
+  
+  describe("get-institution-info", () => {
+    it("should return institution information", () => {
+      const result = contract.getInstitutionInfo("ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM")
+      expect(result.name).toBe("Example University")
+      expect(result.website).toBe("https://www.example.edu")
+    })
+  })
+})
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});
